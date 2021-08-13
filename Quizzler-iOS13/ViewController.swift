@@ -16,9 +16,10 @@ class ViewController: UIViewController {
     @IBOutlet weak var trueButton: UIButton!
     @IBOutlet weak var falseButton: UIButton!
     
-    let quiz = ["Four + Two is equal to six",
-    "Five - Three is greater than one",
-    "Three + Eight is lesser than Ten"]
+    //2D Array -> array[i][j]
+    let quiz = [["Four + Two is equal to six", "True"],
+    ["Five - Three is greater than one", "True"],
+    ["Three + Eight is lesser than Ten", "False"]]
 
     var questionNumber = 0
     
@@ -32,14 +33,33 @@ class ViewController: UIViewController {
 
     //Actions
     @IBAction func answerButtonPressed(_ sender: UIButton) {
-        questionNumber += 1 // questionNumber = + 1
+        
+        
+        //Create If Statement to check answers
+        
+        var userAnswer = sender.currentTitle //True, False
+        var actualAnswer = quiz[questionNumber][1] //all answers is in COLUMN ONE
+        
+        if userAnswer == actualAnswer {
+            print("Right!")
+        } else {
+            print("Wrong!")
+        }
+                                    // Count - The number of elements in the array
+        if questionNumber + 1 < quiz.count {
+            questionNumber += 1 // questionNumber = + 1
+        } else {
+            print(questionNumber)
+        }
+        
     // 2* - call function to update INDEX NUMBER as it increases, inside the array
         updateUI()
     }
     
     // 1* - function to update UI - Need this functionality many times to update the questions (viewDidLoad() will capture this) and ALSO increases the question number.
     func updateUI() {
-        questionLabel.text = quiz[questionNumber]
+                                    // [i]       [j]
+        questionLabel.text = quiz[questionNumber][0]
     }
     
 }
