@@ -40,16 +40,20 @@ class ViewController: UIViewController {
         var userAnswer = sender.currentTitle //True, False
         var actualAnswer = quiz[questionNumber][1] //all answers is in COLUMN ONE
         
+        //Checking answers
         if userAnswer == actualAnswer {
             print("Right!")
         } else {
             print("Wrong!")
         }
+        
+        
+        // Debugging app to not crash when reaching last answer
                                     // Count - The number of elements in the array
         if questionNumber + 1 < quiz.count {
             questionNumber += 1 // questionNumber = + 1
         } else {
-            print(questionNumber)
+            questionNumber = 0 //reset quiz as soon it reaches the last question
         }
         
     // 2* - call function to update INDEX NUMBER as it increases, inside the array
