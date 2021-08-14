@@ -55,11 +55,12 @@ class ViewController: UIViewController {
                             //// quiz[questionNumber] -> Index of each Question(), inside the collection ( [] ), followed by the access of the respective answer (property).
         //Checking answers
         if userAnswer == actualAnswer {
-            print("Right!")
+            sender.backgroundColor = .green
+            sender.layer.cornerRadius = 20
         } else {
-            print("Wrong!")
+            sender.backgroundColor = .red
+            sender.layer.cornerRadius = 20
         }
-        
         
         // ---- Debugging app to not crash when reaching last answer
                                 //// Count - The number of elements in the collection
@@ -78,6 +79,17 @@ class ViewController: UIViewController {
                 
         questionLabel.text = quiz[questionNumber].text
                             //// quiz[questionNumber] -> Index of each Question(), inside the collection ( [] ), followed by the access of the respective text (property).
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            //Bring's sender's color back up to original color.
+            self.trueButton.backgroundColor = .clear
+            self.falseButton.backgroundColor = .clear
+        }
+        
+        
+       
+        
+        
            
     }
     
