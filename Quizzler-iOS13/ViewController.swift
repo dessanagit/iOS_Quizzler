@@ -55,10 +55,10 @@ class ViewController: UIViewController {
                             //// quiz[questionNumber] -> Index of each Question(), inside the collection ( [] ), followed by the access of the respective answer (property).
         //Checking answers
         if userAnswer == actualAnswer {
-            sender.backgroundColor = .green
+            sender.backgroundColor = .green ////changes button color to green
             sender.layer.cornerRadius = 20
         } else {
-            sender.backgroundColor = .red
+            sender.backgroundColor = .red ////changes button color to red
             sender.layer.cornerRadius = 20
         }
         
@@ -66,6 +66,7 @@ class ViewController: UIViewController {
                                 //// Count - The number of elements in the collection
         if questionNumber + 1 < quiz.count {
             questionNumber += 1 // questionNumber = + 1 -> increases questionNumber by 1.
+            
         } else {
             questionNumber = 0 //reset quiz as soon it reaches the last question
         }
@@ -80,6 +81,7 @@ class ViewController: UIViewController {
         questionLabel.text = quiz[questionNumber].text
                             //// quiz[questionNumber] -> Index of each Question(), inside the collection ( [] ), followed by the access of the respective text (property).
         
+        // Reset the color  of true and false button to original state
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
             //Bring's sender's color back up to original color.
             self.trueButton.backgroundColor = .clear
@@ -87,9 +89,8 @@ class ViewController: UIViewController {
         }
         
         
-       
-        
-        
+        // Increases the Progress Bar per question
+        progressBar.progress = Float(questionNumber + 1) / Float(quiz.count)
            
     }
     
