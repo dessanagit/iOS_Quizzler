@@ -31,11 +31,13 @@ struct QuizBrain {
     
     //// Variable to help keep tracking quiz collection
     var questionNumber = 0
+    var scoreNumber = 0
     
     // METHOD to check the question logic
-    func checkAnswer(_ userAnswer: String) -> Bool {
+    mutating func checkAnswer(_ userAnswer: String) -> Bool {
             ////External      Internal parameters name. If _ is used as external parameters name, it's not necessary to "self express" it as an output when using the method.
         if userAnswer == quiz[questionNumber].answer {
+            scoreNumber += 1
             return true
         } else {
             return false
@@ -62,5 +64,17 @@ struct QuizBrain {
     func getProgress() -> Float {
         // Increases the Progress Bar per question
        return Float(questionNumber + 1) / Float(quiz.count)
+    }
+    
+    // METHOD to track the RIGHT answers
+    mutating func getScore() -> Int {
+        
+        if scoreNumber < quiz.count {
+            return scoreNumber
+        } else {
+            scoreNumber = 0
+            return scoreNumber
+        }
+       
     }
 }

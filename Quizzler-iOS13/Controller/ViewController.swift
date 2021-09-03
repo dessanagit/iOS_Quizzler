@@ -11,6 +11,7 @@ import UIKit
 class ViewController: UIViewController {
     
     // ---- Labels of views
+    @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var questionLabel: UILabel!
     @IBOutlet weak var progressBar: UIProgressView!
     @IBOutlet weak var trueButton: UIButton!
@@ -56,8 +57,10 @@ class ViewController: UIViewController {
     // 1* - function to update UI - Need this functionality many times to update the questions (viewDidLoad() will capture this) and ALSO increases the question number.
     func updateUI() {
         
+        
         questionLabel.text = quizBrain.getQuestionText()
         progressBar.progress =  quizBrain.getProgress()
+        scoreLabel.text = "Score: \(quizBrain.getScore())"
         
         // Reset the color  of true and false button to original state
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
