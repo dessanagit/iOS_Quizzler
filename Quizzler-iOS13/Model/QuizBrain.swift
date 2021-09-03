@@ -33,15 +33,34 @@ struct QuizBrain {
     var questionNumber = 0
     
     // METHOD to check the question logic
-    func checkAnswer(_ userAnswer: String) {
+    func checkAnswer(_ userAnswer: String) -> Bool {
             ////External      Internal parameters name. If _ is used as external parameters name, it's not necessary to "self express" it as an output when using the method.
-        
         if userAnswer == quiz[questionNumber].answer {
-            // User got it right
+            return true
         } else {
-            //User got it wrong
+            return false
         }
-                
     }
     
+    
+    mutating func getQuestionText() -> String {
+        
+        // ---- Debugging app to not crash when reaching last answer
+                                //// Count - The number of elements in the collection
+        if questionNumber + 1 < quiz.count {
+            questionNumber += 1 // questionNumber = + 1 -> increases questionNumber by 1.
+            
+        } else {
+            questionNumber = 0 //reset quiz as soon it reaches the last question
+        }
+        
+        return quiz[questionNumber].text //// quiz[questionNumber] -> Index of each Question(), inside the collection ( [] ), followed by the access of the respective text (property).
+        
+    }
+    
+    
+    func getProgress() -> Float {
+        // Increases the Progress Bar per question
+       return Float(questionNumber + 1) / Float(quiz.count)
+    }
 }
