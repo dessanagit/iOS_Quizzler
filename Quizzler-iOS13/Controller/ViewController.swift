@@ -42,13 +42,14 @@ class ViewController: UIViewController {
         
         //Checking answers
         if userGotItRight {
+            //Correct answer
             sender.backgroundColor = .green ////changes button color to green
             sender.layer.cornerRadius = 20
         } else {
+            //Wrong Answer
             sender.backgroundColor = .red ////changes button color to red
             sender.layer.cornerRadius = 20
         }
-        
         
         // 2* - call function to update INDEX NUMBER as it increases, inside the array
         updateUI()

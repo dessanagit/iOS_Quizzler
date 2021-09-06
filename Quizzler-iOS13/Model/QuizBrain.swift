@@ -29,7 +29,7 @@ struct QuizBrain {
         Question(q: "Chocolate affects a dog's heart and nervous system; a few ounces are enough to kill a small dog.", a: "True")
     ]
     
-    //// Variable to help keep tracking quiz collection
+    //// Variables to help keep tracking quiz collection
     var questionNumber = 0
     var scoreNumber = 0
     
@@ -38,13 +38,13 @@ struct QuizBrain {
             ////External      Internal parameters name. If _ is used as external parameters name, it's not necessary to "self express" it as an output when using the method.
         if userAnswer == quiz[questionNumber].answer {
             scoreNumber += 1
-            return true
+            return true //return true to the right answer
         } else {
-            return false
+            return false //return false to the wrong answer
         }
     }
     
-    
+    // METHOD to show quiz questions
     mutating func getQuestionText() -> String {
         
         // ---- Debugging app to not crash when reaching last answer
@@ -54,27 +54,30 @@ struct QuizBrain {
             
         } else {
             questionNumber = 0 //reset quiz as soon it reaches the last question
+            scoreNumber = 0
         }
         
+        //return actual quiz question
         return quiz[questionNumber].text //// quiz[questionNumber] -> Index of each Question(), inside the collection ( [] ), followed by the access of the respective text (property).
         
     }
     
-    
+    // METHOD to increase the progress bar
     func getProgress() -> Float {
         // Increases the Progress Bar per question
-       return Float(questionNumber + 1) / Float(quiz.count)
+       return Float(questionNumber) / Float(quiz.count)
     }
     
     // METHOD to track the RIGHT answers
     mutating func getScore() -> Int {
         
-        if scoreNumber < quiz.count {
-            return scoreNumber
-        } else {
-            scoreNumber = 0
-            return scoreNumber
-        }
+        return scoreNumber
+//        if scoreNumber < (questionNumber + 1) {
+//            return scoreNumber
+//        } else {
+//            scoreNumber = 0
+//            return scoreNumber
+//        }
        
     }
 }
